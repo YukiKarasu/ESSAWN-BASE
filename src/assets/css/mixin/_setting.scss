@@ -1,0 +1,64 @@
+//开关设置
+$lte7: true !default;//是否兼容ie6-7
+$filter: false !default;//是否为ie6-8开启css3滤镜兼容，常用于渐变背景
+$printStyleSwitch: false !default;//是否开启打印样式
+//font相关
+$base-fontsize: 20px !default;
+$base-lineheight: 1.5 !default;
+$base-fontfamily: "HelveticaNeue",Helvetica,Tahoma,sans-serif !default;
+$fontCn: "SimSun";//宋体
+$fontYaHei: "MicrosoftYahei";//微软雅黑
+$fontHeiTi: "SimHei";//黑体
+//基本颜色
+//lighten($color,$amount)
+//darken($color,$amount)
+//opacify($color,$amount)
+//mix($color1,$color2[,$amount])
+$black: #000 !default;
+$grayDarker: #333 !default;
+$grayDark: #999 !default;
+$gray: #ccc !default;
+$grayLight: #f5f5f5 !default;
+$white: #fff !default;
+$red: #cc3300 !default;
+$blue: #00A3CF !default;
+$blueDark: #0064cd !default;
+$orange: #F47837 !default;
+$green: #51B148 !default;
+$yellow: #ffc40d !default;
+$pink: #c3325f !default;
+$purple: #7a43b6 !default;
+$primary: #0078E7 !default;//主色
+//link
+$linkColor: #08c !default;
+//scaffolding
+$bodyBgColor: $white !default;
+$textColor: $grayDarker !default;
+//变量分别为：是否输出表单的占位符placeholder样式，文本色
+$placeholder: true$grayDarker !default;
+//交互配色
+//警告，错误，成功，提示
+//每个变量都有三个颜色值，分别为：文本色，背景色，边框色
+$warning-color: #514721#FFF6BF#FFD324 !default;
+$error-color: #8A1F11#FBE3E4#FBC2C4 !default;
+$success-color: #264409#E6EFC2#C6D880 !default;
+$info-color: #205791#D5EDF8#92CAE4 !default;
+//radius
+$big-radius: 8px !default;
+$base-radius: 5px !default;
+$small-radius: 3px !default;
+//z-index
+$zindexDropdown: 1000 !default;
+$zindexFixedTopbar: 1010 !default;
+$zindexTooltip: 1020 !default;
+$zindexAlert: 1030 !default;
+$zindexModal: 1100 !default;
+// 浏览器前缀开关
+$prefixForWebkit: true !default;
+$prefixForMozilla: true !default;
+$prefixForMicrosoft: true !default;
+$prefixForOpera: true !default; // opera从版本15开始转向webkit，可略
+$prefixNormal: true !default;
+// flex兼容开关
+$flexOld: true !default;  //09版本 用于兼容移动端，-webkit-前缀
+$flexMid: true !default;  

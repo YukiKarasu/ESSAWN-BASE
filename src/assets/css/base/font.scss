@@ -1,0 +1,8 @@
+@import '../mixin/setting';
+@import '../mixin/font';
+ @for $i from 6 through 10 {
+   .fontSize#{$i * 2} {
+     @include font-face($base-fontfamily, null, normal, normal);
+     font-size: #{$i / 10}rem;
+   }
+ }

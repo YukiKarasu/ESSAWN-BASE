@@ -1,0 +1,126 @@
+
+// transform
+@mixin transform($property...) {
+  @include prefixer(transform, $property);
+}
+@mixin transform-origin($axes) {
+  @include prefixer(transform-origin, $axes);
+}
+@mixin transform-style ($style: preserve-3d) {
+  @include prefixer(transform-style, $style);
+}
+// rotate
+@mixin rotate($degrees...) {
+  @include prefixer(transform, rotate($degrees));
+}
+@mixin rotate3D($degrees...) {
+  @include prefixer(transform, rotate3D($degrees));
+}
+@mixin rotateX($degrees) {
+  @include prefixer(transform, rotateX($degrees));
+}
+@mixin rotateY($degrees) {
+  @include prefixer(transform, rotateY($degrees));
+}
+@mixin rotateZ($degrees) {
+  @include prefixer(transform, rotateZ($degrees));
+}
+// scale
+@mixin scale($ratio...) {
+  @include prefixer(transform, scale($ratio));
+}
+@mixin scale3D($ratio...) {
+  @include prefixer(transform, scale3D($ratio));
+}
+@mixin scaleX($ratio) {
+  @include prefixer(transform, scaleX($ratio));
+}
+@mixin scaleY($ratio) {
+  @include prefixer(transform, scaleY($ratio));
+}
+@mixin scaleZ($ratio) {
+  @include prefixer(transform, scaleZ($ratio));
+}
+// translate
+@mixin translate($px...) {
+  @include prefixer(transform, translate($px));
+}
+@mixin translate3D($px...) {
+  @include prefixer(transform, translate3D($px));
+}
+@mixin translateX($px) {
+  @include prefixer(transform, translateX($px));
+}
+@mixin translateY($px) {
+  @include prefixer(transform, translateY($px));
+}
+@mixin translateZ($px) {
+  @include prefixer(transform, translateZ($px));
+}
+// skew
+@mixin skew($degrees...) {
+  @include prefixer(transform, skew($degrees));
+  @include backface-visibility;
+}
+@mixin skewX($degrees) {
+  @include prefixer(transform, skewX($degrees));
+  @include backface-visibility;
+}
+@mixin skewY($degrees) {
+  @include prefixer(transform, skewY($degrees));
+  @include backface-visibility;
+}
+// matrix
+@mixin matrix($args...) {
+  @include prefixer(transform, matrix($args));
+}
+@mixin matrix3D($args...) {
+  @include prefixer(transform, matrix3D($args));
+}
+// transition
+@function transitionPropertyName($prop, $vendor: false) {
+  @if $vendor == webkit and $prefixForWebkit == true and $prop == transform {
+    @return unquote('-webkit-' + $prop);
+  }
+  @if $vendor == moz and $prefixForMozilla == true and $prop == transform {
+    @return unquote('-moz-' + $prop);
+  }
+  @if $vendor == o and $prefixForOpera == true and $prop == transform {
+    @return unquote('-o-' + $prop);
+  }
+  @else {
+    @return $prop;
+  }
+}
+@function transitionPropertyNames($props, $vendor: false) {
+  $new-props: ();
+  @each $prop in $props {
+    $new-props: append($new-props, transitionPropertyName($prop, $vendor), comma)
+  }
+  @return $new-props;
+}
+@mixin transition($properties...) {
+  @if length($properties) >= 1 {
+    @include prefixer(transition, $properties);
+  }
+  @else {
+    $properties: all 0.3s ease;
+    @include prefixer(transition, $properties);
+  }
+}
+@mixin transition-property($properties...) {
+  -webkit-transition-property: transitionPropertyNames($properties, webkit);
+  @if $prefixForOpera {
+    -o-transition-property: transitionPropertyNames($properties, o);
+  }
+  transition-property: transitionPropertyNames($properties, false);
+}
+@mixin transition-duration($times...) {
+  @include prefixer(transition-duration, $times);
+}
+@mixin transition-timing-function($motions...) {
+  @include prefixer(transition-timing-function, $motions);
+}
+@mixin transition-delay($times...) {
+  @include prefixer(transition-delay, $times);
+}

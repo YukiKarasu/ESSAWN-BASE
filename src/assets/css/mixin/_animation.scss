@@ -1,0 +1,49 @@
+// mixin--略过
+@mixin animation ($animations...) {
+  // name | duration | timing | delay | count | direction
+  @include prefixer(animation, $animations);
+}
+@mixin animation-name ($names...) {
+  // <name>
+  @include prefixer(animation-name, $names);
+}
+@mixin animation-duration ($times...) {
+  // <time>
+  @include prefixer(animation-duration, $times);
+}
+@mixin animation-timing-function ($motions...) {
+  // linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(<number>*4,comma)
+  @include prefixer(animation-timing-function, $motions);
+}
+@mixin animation-delay ($times...) {
+  // <time>
+  @include prefixer(animation-delay, $times);
+}
+@mixin animation-iteration-count ($values...) {
+  // infinite | <number>
+  @if length($values) >= 1 {
+    @include prefixer(animation-iteration-count, $values);
+  } @else {
+    @include prefixer(animation-iteration-count, infinite);
+  }
+}
+@mixin animation-direction ($directions...) {
+  // normal | alternate | reverse | alternate-reverse
+  @include prefixer(animation-direction, $directions);
+}
+@mixin animation-fill-mode ($modes...) {
+  // none | forwards | backwards | both
+  @if length($modes) >= 1 {
+    @include prefixer(animation-fill-mode, $modes);
+  } @else {
+    @include prefixer(animation-fill-mode, forwards);
+  }
+}
+@mixin animation-play-state ($states...) {
+  // running | paused
+  @if length($modes) >= 1 {
+    @include prefixer(animation-play-state, $states);
+  } @else {
+    @include prefixer(animation-play-state, paused);
+  }
+}

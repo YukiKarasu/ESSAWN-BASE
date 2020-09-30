@@ -1,0 +1,62 @@
+// extend(both)
+@mixin inline-block ($extend:true) {
+  @if $extend {
+    @extend %inline-block;
+  } @else {
+    display: inline-block;
+    @if $lte7 {
+      *display: inline;*zoom:1;
+    }
+  }
+}
+@mixin center-block ($extend:true) {
+  @if $extend {
+    @extend %center-block;
+  } @else {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@mixin disabled($bgColor:#e6e6e6,$textColor:#ababab) {
+  background-color: $bgColor !important;
+  color: $textColor !important;
+  cursor: not-allowed !important;
+}
+// borderRadius
+@mixin border-radius($radius: $base-radius) {
+  border-radius: $radius;
+  behavior: url(ie-css3.htc);
+}
+// border-img
+@mixin border-image($image) {
+  @include prefixer(border-image, $image)
+}
+// box-sizing
+@mixin box-sizing($type: border-box) {
+  @include prefixer(box-sizing, $type, webkit moz o);
+}
+// box-shadow
+@mixin box-shadow($shadow...) {
+  @if length($shadow) >= 1 {
+    @include prefixer(box-shadow, $shadow);
+  } @else {
+    $shadow: 0 0 4px rgba(0,0,0,.3);
+    @include prefixer(box-shadow, $shadow);
+  }
+}
+// mixin--尺寸
+@mixin  size($width: null, $height: null) {
+  @if ($width != null) {
+    @include width($width);
+  }
+  @if ($height != null) {
+    @include height($height);
+  }
+}
+@mixin height($height: auto) {
+  height: $height;
+  line-height: $height;
+}
+@mixin width($width: auto) {
+  width: $width;
+}

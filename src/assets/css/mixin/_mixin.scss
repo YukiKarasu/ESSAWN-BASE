@@ -1,0 +1,39 @@
+// 文章过长显示省略号
+// @include ellipsis($width)
+%ellipsis-basic{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+@mixin ellipsis($width:100%) {
+  @extend %ellipsis-basic;
+  width:$width;
+}
+// disabled
+// 禁用样式，加!important
+
+
+// 水平间隔线，适用于行列表
+@mixin horizontal-line($border:1px dashed $gray, $padding:10px) {
+  border-bottom:$border;
+  padding-top:$padding;
+  padding-bottom:$padding;  
+}
+%horizontal-line{
+  @include horizontal-line;
+}
+// px转em
+@function pxToEm($px, $base: $base-fontsize) {
+  @return ($px / $base) * 1em;
+}
+//最小高度
+@mixin min-height($height) {
+  min-height: $height;
+  height: auto !important;
+  @if $lte7{
+    _height: $height;
+  }
+}
+
+
+

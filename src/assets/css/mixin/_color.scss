@@ -1,0 +1,146 @@
+// extend
+@mixin hidden ($extend:true) {
+  @if $extend {
+    @extend %hidden;
+  } @else {
+    display: none !important;
+    visibility: hidden;    
+  }
+}
+@mixin visually-hidden ($extend:true) {
+  @if $extend {
+    @extend %visually-hidden;
+  } @else {
+    position: absolute;
+    @if $lte7 {
+      clip:rect(1px 1px 1px 1px);//ie6/7
+    }
+    clip:rect(1px, 1px, 1px, 1px);//standard
+  }
+}
+// mixin
+@mixin colour($color: null, $background: null, $border: null) {
+  // <color>
+  @if ($color != null) {
+    @include color($color)
+  }
+  @if ($background != null) {
+    @include backgroundColor($background)
+  }
+  @if ($border != null) {
+    @include borderColor($border);
+  }
+}
+@mixin color($color: transparent) {
+  color: $color;
+}
+@mixin backgroundColor($background: transparent) {
+  background: $background;
+}
+@mixin borderColor($border: transparent) {
+  border-color: $border;
+}
+@mixin image-rendering($rendering: crisp-edges) {
+  // auto | smooth | high-quality | crisp-edges | pixelated
+  @if $rendering = crisp-edges {
+    image-rendering: -moz-cirsp-edges;
+    image-rendering: -webkit-optimize-constrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+  } @else {
+    @include prefixer-value(image-rendering, webkit moz)
+  }
+}
+@mixin background-clip($clip) {
+  // border-box | padding-box | content-box
+  @if length($clip) >= 1 {
+    @include prefixer(background-clip, $clip, webkit)
+  } @else {
+    @include prefixer(background-clip, $clip, webkit)
+  }
+}
+@mixin background-origin($origin...) {
+  // border-box | padding-box | content-box
+  @if length($origin) >= 1 {
+    @include prefixer(background-origin, $origin, webkit);
+  } @else {
+    @include prefixer(background-origin, border-box, webkit);
+  }
+}
+// background-size
+@mixin background-size($size...) {
+  // <length> | auto | cover | contain
+  @if length($size) >= 1 {
+    @include prefixer(background-size, $size, webkit);
+  } @else {
+    @include prefixer(background-size, cover, webkit);
+  }
+}
+@mixin gradient($pos: horizontal , $isReverse: false, $isRepeat: no-repeat, $gradient...) {
+  // horizontal | vertical
+  // false | true
+  // no-repeat | repeat
+  @if $isRepeat == repeat {
+    $repeat: repeating-;
+  } @else if $isRepeat == no-repeat {
+    $repeat: '';
+  }
+  @if $pos == horizontal {
+    @if $isReverse == false {
+      $start: left;
+      $end: right;
+    } @else {
+      $start: right;
+      $end: left;
+    }
+  } @else if $pos == vertical {
+    @if $isReverse == false {
+      $start: top;
+      $end: bottom;
+    } @else {
+      $start: bottom;
+      $end: top;
+    }
+  }
+  @else if $pos == vertical {
+    $start: top;
+    $end: bottom;
+  }
+  background-image: -webkit-#{$repeat}linear-gradient($start, $gradient);
+  background-image: -o-#{$repeat}linear-gradient($start, $gradient);
+  background-image: #{$repeat}linear-gradient(to #{$end}, $gradient);
+}
+// 角度渐变
+@mixin gradient-angle($isRepeat: no-repeat, $gradient...) {
+  // no-repeat | repeat
+  // <angle>
+  @if $isRepeat == repeat {
+    $repeat: repeating-;
+  } @else if $isRepeat == no-repeat {
+    $repeat: '';
+  }
+  background-image: -webkit-#{$repeat}linear-gradient($gradient);
+  background-image: -o-#{$repeat}linear-gradient($gradient);
+  background-image: #{$repeat}linear-gradient($gradient);
+}
+// 径向渐变
+@mixin gradient-radial($gradient...) {
+  // <angle>
+  background-image: -webkit-radial-gradient($gradient);
+  background-image: -o-radial-gradient($gradient);
+  background-image: radial-gradient($gradient);
+  background-repeat: no-repeat;
+}
+@mixin perspective($depth: none) {
+  // none | <length>
+  @include prefixer(perspective, $depth);
+}
+@mixin perspective-origin($value: 50% 50%) {
+  // x-axis - left | center | right  | length | %
+  // y-axis - top  | center | bottom | length | %
+  @include prefixer(perspective-origin, $value);
+}
+@mixin backface-visibility($visibility:hidden) {
+  // visible | hidden
+  @include prefixer(backface-visibility, $visibility);
+}

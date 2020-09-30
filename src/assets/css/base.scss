@@ -1,0 +1,368 @@
+@import './mixin/base';
+@import './base/font.scss';
+.home{
+  @extend %center-block;
+  @include display-flex();
+}
+html {
+  @extend %base-font;
+  font-size: $base-fontsize;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+body {
+  margin: 0;
+  line-height: $base-lineheight;
+  color:$textColor;
+  background-color:$bodyBgColor;
+}
+div,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  @extend %inline-block;
+  vertical-align: baseline;
+
+  @if $lte7 {
+    *display: inline;
+    *zoom: 1;
+  }
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  @extend %hidden;
+}
+a {
+  background: transparent;
+  &:active,
+  &:hover {
+    outline: 0; /* 2 */
+  }
+  /* 0 */
+  text-decoration:none;
+  @if length($linkColor) > 1{
+      color:nth($linkColor,1);
+      &:hover{
+        color:nth($linkColor,2);
+      }
+  } @else {
+    color:$linkColor;
+    &:hover{
+      color:darken($linkColor,10%);
+    }
+  }
+}
+abbr[title] {
+  border-bottom: 1px solid;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+  vertical-align: middle;
+
+  @if $lte7 {
+    -ms-interpolation-mode: bicubic;
+  }
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+pre {
+  overflow: auto;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  @if $lte7 {
+    _font-family: 'courier new', monospace;
+  }
+  font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+button {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+  @if $lte7 {
+    *overflow: visible;
+  }
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+
+  @if $lte7 {
+    *height: 13px;
+    *width: 13px;
+  }
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0;
+  padding: 0;
+
+  @if $lte7 {
+    *margin-left: -7px;
+  }
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+optgroup {
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+@if $lte7 {
+  q {
+      quotes: none;
+  }
+}
+html, 
+button, 
+input, 
+select, 
+textarea{
+  font-family: $base-fontfamily;
+}
+h1,h2,h3,h4,h5,h6,p,figure,form,blockquote,ul,ol,li,dl,dd {
+  margin: 0;
+  padding: 0;
+}
+ul,ol{
+  list-style: none outside none;
+}
+@if nth($placeholder,1) {
+  // Firefox 4-18
+  input:-moz-placeholder,
+  textarea:-moz-placeholder { 
+    color: nth($placeholder,2); 
+  } 
+  // Firefox 19+
+  input::-moz-placeholder,
+  textarea::-moz-placeholder{
+    color: nth($placeholder,2); 
+  } 
+  // Internet Explorer 10+
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder{
+    color: nth($placeholder,2); 
+  } 
+  // Safari and Chrome
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder{ 
+    color: nth($placeholder,2); 
+  } 
+}
+@if $printStyleSwitch {
+  @media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; // Black prints faster: h5bp.com/s
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+    a,
+    a:visited {
+      text-decoration: underline;
+    }
+    a[href]:after {
+      content: " (" attr(href) ")";
+    }
+    abbr[title]:after {
+      content: " (" attr(title) ")";
+    }
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+      content: "";
+    }
+    pre,
+    blockquote {
+      border: 1px solid #999;
+      page-break-inside: avoid;
+    }
+    thead {
+      display: table-header-group;
+    }
+    tr,
+    img {
+      page-break-inside: avoid;
+    }
+    img {
+      max-width: 100% !important;
+    }
+    @page {
+      margin: 0.5cm;
+    }
+  }
+}
+.select-enable{
+  @extend %select-enable;
+}
+.select-able{
+  @extend %select-able;
+}
+// flex
+.flex{
+  @extend %flex;
+}
+
+.flex-wrap{
+  @extend %flex-wrap;
+}
+.flex_direction-column{
+  @extend %flex_direction-column;
+}
+.flex-1{
+  @extend %flex-1;
+}
+.align-item_center{
+  @extend %align-item_center;
+}
+.justify_content-center{
+  @extend %justify_content-center;
+}
+.justify_content-end{
+  @extend %justify_content-end;
+}
+.justify_content-around{
+  @extend %justify_content-around;
+}
+.justify_content-between{
+  @extend %justify_content-between;
+}
+// margin | padding
+@for $i from 0 through 8 {
+  .m_t-#{$i * 5}{
+    margin-top: #{$i * 5}px;
+  }
+  .m_r-#{$i}{
+    margin-right: #{$i * 5}px;
+  }
+  .m_b-#{$i}{
+    margin-bottom: #{$i * 5}px;
+  }
+  .m_l-#{$i}{
+    margin-left: #{$i * 5}px;
+  }
+  .p_t-#{$i}{
+    padding-top: #{$i * 5}px;
+  }
+  .p_r-#{$i}{
+    padding-right: #{$i * 5}px;
+  }
+  .p_b-#{$i}{
+    padding-bottom: #{$i * 5}px;
+  }
+  .p_l-#{$i}{
+    padding-left: #{$i * 5}px;
+  }
+}

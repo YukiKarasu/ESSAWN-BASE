@@ -1,0 +1,24 @@
+// mixin
+@mixin font-face($font-family, $file-path: null, $weight: normal, $style: normal) {
+  // font-family | file-path | font-weight | font-style
+  @if $file-path != null {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+      src: url('#{file-path}.eot');
+      src: url('#{file-path}.eot?#iefix') format('eot'),
+           url('#{file-path}.svg##{$font-family}')  format('svg'),
+           url('#{file-path}.woff') format('woff'),
+           url('#{file-path}.ttf')  format('truetype')
+    }
+  } @else {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+@mixin user-select($arg: text) {
+  // none | text | all | element | contain
+  @include prefixer(user-select, $arg)
+}

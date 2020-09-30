@@ -1,0 +1,80 @@
+// 顺序不可轻易变动
+@import './setting';
+@import './prefix';
+@import './mixin';
+@import './flex';
+@import './font';
+@import './transform';
+@import './layout';
+@import './color';
+@import './animation';
+@import './media-queries';
+%base-font{
+  @include font-face($base-fontfamily, null, normal, normal);
+}
+%select-enable{
+  @include user-select(none);
+}
+%select-able{
+  @include user-select(text);
+}
+// 普通all transition特效
+%all-transition{
+  @include transition;
+}
+%border-box{
+  @include box-sizing;
+}
+%animated {
+  @include animation-duration(1s);
+  @include animation-fill-mode(both);
+}
+%zoom{
+  @if $lte7 {
+    *zoom:1;
+  }
+}
+%disabled{
+  @include disabled;
+}
+%inline-block{
+  @include inline-block(false);
+}
+%center-block{
+  @include center-block(false);
+}
+// 可视
+%hidden{
+  @include hidden(false);
+}
+%visually-hidden{
+  @include visually-hidden(false);
+}
+// flex
+%flex{
+  @include display-flex;
+}
+%flex-wrap{
+  @include flex-wrap;
+}
+%flex_direction-column{
+  @include flex-direction(column);
+}
+%flex-1{
+  @include order(1);
+}
+%align-item_center{
+  @include align-items;
+}
+%justify_content-center{
+  @include justify-content(center);
+}
+%justify_content-end{
+  @include justify-content(flex-end);
+}
+%justify_content-around{
+  @include justify-content(space-around);
+}
+%justify_content-between{
+  @include justify-content(space-between);
+}

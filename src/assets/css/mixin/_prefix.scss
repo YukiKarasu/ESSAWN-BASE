@@ -1,0 +1,39 @@
+@import 'setting';
+@mixin prefixer($property, $value, $prefixes: o webkit moz ms) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit and $prefixForWebkit == true {
+      -webkit-#{$property}: $value;
+    }
+    @else if $prefix == moz and $prefixForMozilla == true {
+      -moz-#{$property}: $value;
+    }
+    @else if $prefix == ms and $prefixForMicrosoft == true {
+      -ms-#{$property}: $value;
+    }
+    @else if $prefix == 0 and $prefixForOpera == true {
+      -o-#{$property}: $value;
+    }
+  }
+  @if $prefixNormal {
+    #{$property}: $value;
+  }
+}
+@mixin prefixer-value($property, $value, $prefixes: o webkit moz ms) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit and $prefixForWebkit == true {
+      #{$property}: -webkit-#{$value};
+    }
+    @else if $prefix == moz and $prefixForMozilla == true {
+      #{$property}: -moz-#{$value};
+    }
+    @else if $prefix == ms and $prefixForMicrosoft == true {
+      #{$property}: -ms-#{$value};
+    }
+    @else if $prefix == 0 and $prefixForOpera == true {
+      #{$property}: -o-#{$value};
+    }
+    @if $prefixNormal {
+      #{$property}: $value;
+    }
+  }
+}

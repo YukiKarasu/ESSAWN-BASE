@@ -1,0 +1,55 @@
+// mixin
+@mixin disable-prefix-for-all {
+  $prefixForWebkit: false !global;
+  $prefixForMozilla: false !global;
+  $prefixForMicrosoft: false !global;
+  $prefixForOpera: false !global;
+  $prefixNormal: false !global;
+}
+@mixin keyframes($name, $prefixes: webkit o ) {
+  $originalPrefixForWebkit: $prefixForWebkit;
+  $originalPrefixForMozilla: $prefixForMozilla;
+  $originalPrefixForMicrosoft: $prefixForMicrosoft;
+  $originalPrefixForOpera: $prefixForOpera;
+  $originalPrefixNo: $prefixNo;
+  @each $prefix in $prefixes {
+    @if $prefix == webkit and $originalPrefixForWebkit == true {
+      @include disable-prefix-for-all();
+      $prefixForWebkit: true !global;
+      @-webkit-keyframes #{$name} {
+        @content;
+      }
+    }
+    @if $prefix == moz and $originalPrefixForMozilla == true {
+      @include disable-prefix-for-all();
+      $prefixForMozilla: true !global;
+      @-moz-keyframes #{$name} {
+        @content;
+      }
+    }
+    @if $prefix == ms and $originalPrefixForMicrosoft == true {
+      @include disable-prefix-for-all();
+      $prefixForMicrosoft: true !global;
+      @-ms-keyframes #{$name} {
+        @content;
+      }
+    }
+    @if $prefix == o and $originalPrefixForOpera == true {
+      @include disable-prefix-for-all();
+      $prefixForOpera: true !global;
+      @-o-keyframes #{$name} {
+        @content;
+      }
+    }
+  }
+  @include disable-prefix-for-all();
+  $prefixNo: true !global;
+  @keyframes #{$name} {
+    @content;
+  }
+  $prefixForWebkit:       $originalPrefixForWebkit !global;
+  $prefixForMozilla:      $originalPrefixForMozilla !global;
+  $prefixForMicrosoft:    $originalPrefixForMicrosoft !global;
+  $prefixForOpera:        $originalPrefixForOpera !global;
+  $prefixNo:              $originalPrefixNo !global;
+}
