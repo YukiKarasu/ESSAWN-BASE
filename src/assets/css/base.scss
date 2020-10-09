@@ -1,9 +1,5 @@
 @import './mixin/base';
 @import './base/font.scss';
-.home{
-  @extend %center-block;
-  @include display-flex();
-}
 html {
   @extend %base-font;
   font-size: $base-fontsize;

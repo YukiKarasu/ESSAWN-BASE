@@ -1,24 +1,27 @@
 <template>
   <div class="home">
-    <div class="test fontSize40">我是</div>
-    <!-- <section class="section-block">
-      <div class="section-header flex flex-start">
-        <div class="section-title">title</div>
-        <div class="section-more">
-          <div class="more-text">more</div>
+    <!-- section.section>(.section-header>(.section-title+.section-more>(.more-text+.more-icon))+.section-content>.section-item>(.item-title+.item-time)) -->
+    <section class="section">
+      <div class="section-header">
+        <div class="header-title">
+          header-title1111111111111111111111111111111111111
+        </div>
+        <div class="header-more">
+          <div class="more-text">
+            more-text11111111111111111111111111111111111111111111
+          </div>
           <div class="more-icon">
-            <img src="" a /lt="">
+            more-icon111111111111111111111111111111111111111111111111111111
           </div>
         </div>
       </div>
-      <div class="section-content flex justify-content_flex-justify">
-        <div class="section-article ">
-          <div class="rec"></div>
-          <div class="article-title">title</div>
+      <div class="section-content">
+        <div class="content-item">
+          <div class="item-title">item-title</div>
+          <div class="item-time">item-time</div>
         </div>
-        <div class="section-time">time</div>
       </div>
-    </section> -->
+    </section>
   </div>
 </template>
 <script lang="ts">
@@ -26,42 +29,5 @@ import { Vue } from 'vue-property-decorator';
 export default class Home extends Vue {}
 </script>
 <style lang="scss" scoped>
-@import '../assets/css/mixin/base';
-$section-box-width: 580px;
-$section-header-height: 40px;
-$section-title-border: 4px solid #ea3e3e;
-$section-more-border: 4px solid #e6e6e6;
-%display-flex {
-  @include display-flex;
-}
-.home {
-  @extend %center-block;
-  @extend %display-flex;
-  background: #ea3e3e;
-}
-// .section-block {
-//   width: $section-box-width;
-//   .section-header {
-//     .section-title {
-//       height: $section-header-height;
-//       line-height: $section-header-height;
-//       // @include boxSize($height);
-//       border-bottom: $section-title-border;
-//     }
-//     .section-more {
-//       width: 100%;
-//       height: $section-header-height;
-//       line-height: $section-header-height;
-//       border-bottom: $section-more-border;
-//       text-align: right;
-//     }
-//   }
-//   .section-content {
-//     width: 100%;
-//     .section-article {
-//       width: 100%;
-//     }
-//   }
-// }
-// @import url('../assets/css/part/section.scss');
+@import '../assets/css/part/section.scss';
 </style>
